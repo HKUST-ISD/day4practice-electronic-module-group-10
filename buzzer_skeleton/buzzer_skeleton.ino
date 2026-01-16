@@ -78,4 +78,19 @@ void loop() {
 
 
 
+Serial.println("Playing Jingle Bells...");
+
+int notes = min((int)(sizeof(melody)/sizeof(melody[0])),
+                (int)(sizeof(noteDurations)/sizeof(noteDurations[0])));
+
+for (int thisNote = 0; thisNote < notes; thisNote++) {
+  int noteDuration = 1000 / noteDurations[thisNote];
+  tone(BUZZER_PIN, melody[thisNote], noteDuration);
+
+  int pauseBetweenNotes = noteDuration * 1.30;
+  delay(pauseBetweenNotes);
+
+  noTone(BUZZER_PIN);
+}
+
 }
